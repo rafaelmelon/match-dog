@@ -1,0 +1,89 @@
+// main: ../../main.scss
+
+/*
+  BLOCK OPTION
+*/
+
+.b-option {
+  width: 250px;
+  margin: 0 auto 20px auto;
+  height: auto;
+  .ships {
+    margin-bottom: 20px;
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        list-style-type: none;
+        position: relative;
+        path {
+          fill: $grey-4;
+        }
+        .btn-ship {
+          touch-action: manipulation;
+          border: 1px solid transparent;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-color: transparent;
+          margin: 0;
+          padding: 0;
+          transition: all 1s ease;
+          &[disabled="disabled"] {
+            path {
+              fill: $grey-2;
+            }
+          }
+          &.sunken {
+            path {
+              fill: $alert-1;
+              animation: fire2 2s forwards infinite;
+            }
+          }
+        }
+        small {
+          position: absolute;
+          top: 0;
+          right: 0;
+          display: none;
+        }
+        span.btn-ship {
+          &[disabled="disabled"] {
+            path {
+              fill: $grey-2;
+            }
+          }
+          &.sunken {
+            path {
+              fill: $alert-1;
+            }
+          }
+        }
+      }
+    }
+  }
+  .current {
+    margin-bottom: 20px;
+  }
+  .rotate {
+    margin-bottom: 20px;
+  }
+  .reset {
+    margin-bottom: 20px;
+  }
+}
+
+@keyframes fire2 {
+  0% {
+    fill:rgba(255, 2, 0, 0.3);
+  }
+  50% {
+    fill:rgba(255, 2, 0, 1);
+  }
+  100% {
+    fill:rgba(255, 2, 0, 0.3);
+  }
+}

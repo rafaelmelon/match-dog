@@ -1,0 +1,16 @@
+// compileCompressed: ../css/main.min.css﻿
+
+// Custom
+@import "custom/colors.scss";
+@import "custom/custom.scss";
+
+// Blocks
+@import "custom/blocks/b-board.scss";
+@import "custom/blocks/b-panel.scss";
+@import "custom/blocks/b-report.scss";
+@import "custom/blocks/b-option.scss";
+@import "custom/blocks/b-header.scss";
+
+// Modals
+@import "custom/modals/m-init.scss";
+@import "custom/modals/m-stat.scss";
