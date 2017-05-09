@@ -1,0 +1,47 @@
+<% include ../layouts/template/header.ejs %>
+
+    <div class="col-md-12">
+      <div class="b-chat">
+        <div class="profile">
+          <ul class="list-unstyled">
+            <li class="userID">
+              <div class="name">
+                <p>Pedro</p>
+              </div>
+              <div class="avatar">
+                <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+              </div>
+            </li>
+            <li class="userID">
+              <div class="name">
+                <p>Pedro</p>
+              </div>
+              <div class="avatar">
+                <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="room">
+          <div class="entry">
+            <span class="current">
+              <span>Hola que tal</span>
+            </span>
+            <span class="match">
+              <span>Yo bien, y tu¿?</span>
+            </span>
+            <span class="current">
+              <span>Aquí en mi casa</span>
+            </span>
+          </div>
+          <div class="message">
+            <form class="/send" action="index.html" method="post">
+              <div class="form-group">
+                <textarea class="form-control" rows="3" name="description" placeholder="Message"></textarea>
+              </div>
+              <button type="submit" class="btn btn-default">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

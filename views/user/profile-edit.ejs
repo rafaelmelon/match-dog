@@ -1,0 +1,72 @@
+<% include ../layouts/template/header.ejs %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="b-form">
+        <h2>Rellena los campos de tu perfil</h2>
+        <form action="/signup" method="post" enctype="multipart/form-data">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="fullname">User name:</label>
+              <input type="text" class="form-control" name="fullname" placeholder="User name">
+            </div>
+            <div class="form-group">
+              <label for="age">Age:</label>
+              <input type="number" class="form-control" name="age" placeholder="Age">
+            </div>
+            <div class="form-group">
+              <label for="age">Description:</label>
+              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="avatar">
+              <img src="" alt="" id="image">
+            </div>
+            <div class="form-group">
+              <input type="file" name="profilePic" id="profilePic">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="b-form">
+        <h2>Rellena los campos de tu perro</h2>
+        <form action="/dog" method="POST">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" name="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <label for="breed">Breed:</label>
+              <input type="text" class="form-control" name="breed" placeholder="Breed">
+            </div>
+            <div class="form-group">
+              <label for="age">Age:</label>
+              <input type="number" class="form-control" name="age" placeholder="Age">
+            </div>
+            <div class="form-group">
+              <label for="age">Description:</label>
+              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="avatar">
+              <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+            </div>
+            <div class="form-group">
+              <input type="file" name="picture" id="picture">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-12 text-center">
+      <button type="submit" class="btn btn-default">Guardar</button>
+    </div>
+  </div>
+  </div>
+</div>
+<script>formShowImage("profilePic","image");</script>
