@@ -1,3 +1,5 @@
+/* jshint esversion:6 */
+
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const session = require('express-session');
@@ -53,9 +55,11 @@ module.exports = app => {
                         const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                         const newUser = new User({
                             username,
-                            email,
-                            description,
-                            password: hashPass
+                            password: hashPass,
+                            fullname,
+                            age,
+                            profilePic,
+                            description
                         });
 
                         newUser.save((err) => {
