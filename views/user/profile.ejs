@@ -1,29 +1,39 @@
 <% include ../layouts/template/header.ejs %>
 <div class="container">
   <div class="row">
-    <div class="col-md-12">
-      <h2>Perfil de usuario</h2>
-      <div class="col-md-6">
-        <div class="c-profile c-dog">
+    <div class="col-md-12 text-center">
+      <h2>User profile</h2>
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="b-profile dog">
           <div class="pic">
             <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
           </div>
-          <small>Nombre del perro, edad</small>
-          <small>Raza del perro</small>
+          <div class="info">
+            <small>Bobby, 3</small>
+            <small>Galgo</small>
+          </div>
+          <div class="description">
+            Phasellus gravida, nunc quis tincidunt volutpat, nunc sem feugiat justo, quis faucibus orci eros at ipsum. Phasellus vitae nibh sodales, gravida urna quis, aliquam lorem. Aliquam vel venenatis erat. Curabitur ut tincidunt ante.
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="c-profile c-user">
+      <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="b-profile user">
           <div class="pic">
             <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+            <span>Owner</span>
           </div>
-          <small>Nombre del usuario</small>
-          <small>Edad del usuario</small>
+          <div class="info">
+            <small>Pepe, 32</small>
+          </div>
+          <div class="description">
+            Curabitur auctor lacus a nisi ullamcorper, sit amet lobortis libero condimentum. Pellentesque vel ipsum diam. Praesent tincidunt sapien maximus mattis dapibus. Aliquam non hendrerit elit. Curabitur ac auctor tortor.
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-12">
-      <button type="submit" class="btn btn-default">Buscar</button>
+    <div class="col-md-12 text-center">
+      <button type="submit" class="btn btn-default">Search</button>
     </div>
   </div>
 </div>
