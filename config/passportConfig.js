@@ -62,7 +62,8 @@ module.exports = app => {
                             age,
                             profilePic : `/uploads/${req.file.filename}`,
                             profilePicName : `${req.file.originalname}`,
-                            description
+                            description,
+                            dog: null
                         });
                         console.log(newUser);
                         newUser.save((err) => {
