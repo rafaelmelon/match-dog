@@ -38,6 +38,7 @@ module.exports = app => {
             passReqToCallback: true
         },
         (req, username, password, next) => {
+
             // To avoid race conditions
             process.nextTick(() => {
                 User.findOne({
@@ -52,16 +53,18 @@ module.exports = app => {
                     } else {
                         // Destructure the body
                         const { username, password, fullname, age, description } = req.body;
+
                         const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                         const newUser = new User({
                             username,
                             password: hashPass,
                             fullname,
                             age,
-                            profilePic : `/uploads/${req.body.profilePic}`,
+                            profilePic : `/uploads/${req.file.filename}`,
+                            profilePicName : `${req.file.originalname}`,
                             description
                         });
-
+                        console.log(newUser);
                         newUser.save((err) => {
                             if (err) {
                                 next(err);

@@ -4,7 +4,7 @@
     <div class="col-md-12">
       <div class="b-form">
         <h2>Rellena los campos de tu perfil</h2>
-        <form action="/signup" method="post">
+        <form action="/signup" method="post" enctype="multipart/form-data">
           <div class="col-md-6">
             <div class="form-group">
               <label for="username">Email:</label>
@@ -32,7 +32,7 @@
               <img src="" alt="">
             </div>
             <div class="form-group">
-              <input type="file" name="profilePic" id="profilePic">
+              <input type="file" name="profilePic">
             </div>
           </div>
           <div class="col-md-12">
