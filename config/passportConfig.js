@@ -60,7 +60,8 @@ module.exports = app => {
                             fullname,
                             age,
                             profilePic: "http://test.png",
-                            description
+                            description,
+                            dog: null
                         });
 
                         newUser.save((err) => {

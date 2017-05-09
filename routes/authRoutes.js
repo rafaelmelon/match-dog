@@ -15,7 +15,7 @@ router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
 }));
 
 // SIGNUP USER
-router.get('/signup', (req, res) => {
+router.get('/signup', ensureLoggedOut(), (req, res) => {
   res.render('auth/signup');
 });
 router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
