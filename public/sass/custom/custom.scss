@@ -1,0 +1,22 @@
+// main: ../main.scss
+
+/*
+  CUSTOM TEMPLATE
+*/
+
+$font-text: 'Roboto Slab', serif;
+$font-enfasis: 'Teko', sans-serif;
+$font-console: 'Inconsolata', monospace;
+
+$shadow-1: inset -5px -10px 40px rgba(0,0,0,0.6);
+$shadow-2: inset -5px -5px 80px rgba(0,0,0,0.5);
+
+html,body{
+  font-family: $font-text;
+}
+
+.wrapper {
+  .h1 {
+    font-family: $font-enfasis;
+  }
+}

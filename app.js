@@ -1,22 +1,24 @@
+/* jshint esversion:6 */
+
 const express = require('express');
+const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const layouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
+
+const authRoutes = require('./routes/authRoutes');
+const homeRoutes = require('./routes/homeRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 mongoose.connect('mongodb://localhost/project-match-dog');
 
 const app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+//app.locals.title = 'Express - Generated with IronGenerator';
 
 // passport authentication configs
 require('./config/passportConfig')(app);
@@ -27,15 +29,25 @@ app.use((req, res, next) => {
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// view engine setup
+app.use(expressLayouts);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.set('layout', 'layouts/main-layout');
+
+app.use('/node_modules', express.static(__dirname + '/node_modules/'));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(layouts);
 
-const index = require('./routes/index');
-app.use('/', index);
+// require in the routers
+app.use('/', authRoutes);
+app.use('/', homeRoutes);
+app.use('/', userRoutes);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

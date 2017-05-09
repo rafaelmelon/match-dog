@@ -1,0 +1,24 @@
+<% include ../layouts/template/header-auth.ejs %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="c-form">
+        <h2>Conecta si quieres encontrar una pareja para tu perro ideal</h2>
+        <form action="/login" method="POST">
+          <div class="form-group">
+            <label for="username">Email:</label>
+            <input type="email" class="form-control" name="username" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" name="password" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-default">Connect</button>
+        </form>
+        <form action="/signup" method="POST">
+          <button type="submit" class="btn btn-link">Si no tienes cuenta regístrate aquí</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

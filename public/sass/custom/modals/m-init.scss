@@ -1,0 +1,69 @@
+// main: ../../main.scss
+
+/*
+  MODAL INIT
+*/
+
+
+.m-init {
+
+  .modal-content {
+    .h4 {
+      font-family: $font-enfasis;
+      font-size: 28px;
+    }
+    .modal-header {
+      font-family: $font-enfasis;
+      border-bottom: none;
+    }
+    .modal-body {
+      .user-name {
+        margin-bottom: 30px;
+        input {
+          width: 50%;
+          margin: auto;
+        }
+      }
+      .user-navy {
+        width: 50%;
+        margin: auto;
+        text-align: left;
+        .radio {
+          margin-bottom: 20px;
+          label {
+            font-family: $font-text;
+            font-size: 14px;
+            font-weight: 600;
+            background-size: contain;
+            background-repeat: no-repeat;
+            padding: 12px 0 12px 60px;
+            text-transform: uppercase;
+          }
+          input {
+            margin-left: 210px;
+          }
+        }
+        .jap {
+          label {
+            background-image: url(../img/flags/icon-japan.jpg);
+          }
+        }
+        .ger {
+          label {
+            background-image: url(../img/flags/icon-german.jpg);
+          }
+        }
+        .usa {
+          label {
+            background-image: url(../img/flags/icon-usa.jpg);
+          }
+        }
+        .urs {
+          label {
+            background-image: url(../img/flags/icon-urss.jpg);
+          }
+        }
+      }
+    }
+  }
+}

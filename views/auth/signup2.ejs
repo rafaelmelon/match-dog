@@ -1,0 +1,41 @@
+<% include ../layouts/template/header-auth.ejs %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="c-form">
+        <h2>Rellena los campos de tu perro</h2>
+        <form action="/signup-user" method="POST">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="name">Name:</label>
+              <input type="text" class="form-control" name="name" placeholder="Name">
+            </div>
+            <div class="form-group">
+              <label for="breed">Breed:</label>
+              <input type="text" class="form-control" name="breed" placeholder="Breed">
+            </div>
+            <div class="form-group">
+              <label for="age">Age:</label>
+              <input type="number" class="form-control" name="age" placeholder="Age">
+            </div>
+            <div class="form-group">
+              <label for="age">Description:</label>
+              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="avatar">
+              <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+            </div>
+            <div class="form-group">
+              <input type="file" name="picture" id="picture">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-default">Siguiente</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
