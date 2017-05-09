@@ -51,14 +51,15 @@ module.exports = app => {
                         return next(null, false);
                     } else {
                         // Destructure the body
-                        const {username, email, description, password} = req.body;
+                        const { username, password, fullname, age, description } = req.body;
+                        console.log(username);
                         const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
                         const newUser = new User({
                             username,
                             password: hashPass,
                             fullname,
                             age,
-                            profilePic,
+                            profilePic: "http://test.png",
                             description
                         });
 

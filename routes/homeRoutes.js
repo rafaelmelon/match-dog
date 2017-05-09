@@ -1,14 +1,16 @@
 /* jshint esversion:6 */
 
 const express = require('express');
-const router  = express.Router();
+const passport = require('passport');
+const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const router = express.Router();
 
-router.get('/', (req, res, next) => {
-  res.render('index');
+router.get('/', ensureLoggedIn('/login'), (req, res, next) => {
+    res.render('index');
 });
 
 router.get('/home', (req, res, next) => {
-  res.render('home/match');
+    res.render('home/match');
 });
 
 module.exports = router;

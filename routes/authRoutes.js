@@ -2,34 +2,25 @@
 
 const express = require('express');
 const passport = require('passport');
-const router  = express.Router();
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const router  = express.Router();
 
 // LOGIN
 router.get('/login', ensureLoggedOut(), (req, res) => {
-  res.render('auth/login');
+    res.render('auth/login');
 });
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
-  successRedirect : '/',
-  failureRedirect : '/signup-user'
+   successRedirect : '/',
+   failureRedirect : '/signup'
 }));
 
 // SIGNUP USER
-router.get('/signup-user', (req, res) => {
-  res.render('auth/signup-user');
+router.get('/signup', (req, res) => {
+  res.render('auth/signup');
 });
-router.post('/signup-user', ensureLoggedOut(), passport.authenticate('local-signup', {
-  successRedirect : '/signup-dog',
-  failureRedirect : '/signup-user'
-}));
-
-// SIGNUP DOG
-router.get('/signup-dog', (req, res) => {
-  res.render('auth/signup-dog');
-});
-router.post('/signup-dog', ensureLoggedOut(), passport.authenticate('local-signup', {
-   successRedirect : '/',
-   failureRedirect : '/signup-dog'
+router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
+   successRedirect : '/dog',
+   failureRedirect : '/signup'
 }));
 
 // LOGOUT
