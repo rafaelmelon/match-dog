@@ -1,6 +1,11 @@
+/* jshint esversion:6 */
+
 const express = require('express');
 const passport = require('passport');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+
+const multer  = require('multer');
+const upload = multer({ dest: './public/uploads/dogs' });
 
 // Require Custom Middleware
 const dogChecker = require('../middleware/dogChecker');
@@ -15,14 +20,15 @@ router.get('/dog', ensureLoggedIn('/login'), dogChecker, (req, res, next) => {
     res.render('dog/dog');
 });
 
-router.post('/dog', ensureLoggedIn('login'), (req, res, next) => {
+router.post('/dog', ensureLoggedIn('login'), upload.single('picture'),  (req, res, next) => {
     const { name, breed, age, description } = req.body;
 
     const dog = new Dog({
         name,
         breed,
         age,
-        picture: "http://photo.jpg",
+        picture : `/uploads/dogs/${req.file.filename}`,
+        pictureName : `${req.file.originalname}`,
         description
     });
 

@@ -6,6 +6,7 @@ var dogSchema = new Schema({
 	'breed': String,
 	'age' : Number,
 	'picture' : String,
+	'pictureName' : String,
 	'description' : String
 });
 
