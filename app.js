@@ -12,6 +12,7 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const homeRoutes = require('./routes/homeRoutes');
 const userRoutes = require('./routes/userRoutes');
+const dogRoutes = require('./routes/dogRoutes');
 
 mongoose.connect('mongodb://localhost/project-match-dog');
 
@@ -47,6 +48,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', authRoutes);
 app.use('/', homeRoutes);
 app.use('/', userRoutes);
+app.use('/', dogRoutes);
 
 
 // catch 404 and forward to error handler
