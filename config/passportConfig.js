@@ -60,7 +60,7 @@ module.exports = app => {
                             password: hashPass,
                             fullname,
                             age,
-                            profilePic : `/uploads/${req.file.filename}`,
+                            profilePic : `/uploads/images/${req.file.filename}`,
                             profilePicName : `${req.file.originalname}`,
                             description,
                             dog: null

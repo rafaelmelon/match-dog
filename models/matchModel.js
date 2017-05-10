@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema   = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema   = mongoose.Schema;
 
-var matchSchema = new Schema({
+const matchSchema = new Schema({
 	'users' : [{type: Schema.Types.ObjectId, ref: 'User'}],
     'matched' : {type: boolean, default: false}
 });
