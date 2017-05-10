@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema   = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema   = mongoose.Schema;
 
-var messageSchema = new Schema({
+const messageSchema = new Schema({
 	'from' : {type: Schema.Types.ObjectId, ref: 'User'},
 	'text' : String,
 	'match': {type: Schema.Types.ObjectId, ref: 'Match'}

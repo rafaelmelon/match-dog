@@ -12,14 +12,14 @@ const User = require('../models/userModel');
 const Dog = require('../models/dogModel');
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res, next) => {
-    User.findById(req.user._id).populate("dog").exec((error, user)=>{
+    User.findById(req.user._id).populate('dog').exec((error, user)=>{
        if (error) { next(error); }
         res.render('user/profile', {user: user});
     });
 });
 
 router.get('/profile-edit', (req, res, next) => {
-    User.findById(req.user._id).populate("dog").exec((error, user)=>{
+    User.findById(req.user._id).populate('dog').exec((error, user)=>{
         if (error) { next(error); }
         res.render('user/profile-edit', {user: user});
     });
@@ -33,7 +33,7 @@ router.post('/profile-edit', upload.array('picture', 2), ensureLoggedIn('/login'
        user.age = req.body.age;
        user.description = req.body.description;
 
-       if (typeof req.files[0] !== "undefined") {
+       if (typeof req.files[0] !== 'undefined') {
            user.profilePic = `/uploads/images/${req.files[0].filename}`;
            user.profilePicName = `${req.files[0].originalname}`;
        }
@@ -49,7 +49,7 @@ router.post('/profile-edit', upload.array('picture', 2), ensureLoggedIn('/login'
                dog.age = req.body.dogAge;
                dog.description = req.body.dogDescription;
 
-               if (typeof req.files[1] !== "undefined") {
+               if (typeof req.files[1] !== 'undefined') {
                    dog.picture = `/uploads/images/${req.files[1].filename}`;
                    dog.pictureName = `${req.files[1].originalname}`;
                }
@@ -62,22 +62,6 @@ router.post('/profile-edit', upload.array('picture', 2), ensureLoggedIn('/login'
        });
    });
 });
-
-// router.post('/edit-dog', uploadImgDog.single('picture'), ensureLoggedIn('/login'), (req, res, next) => {
-//   const updateDog = {
-//     name: req.body.fullname,
-//     breed: req.body.breed,
-//     age:  req.body.age,
-//     description: req.body.description,
-//     picture : `/uploads/${req.file.filename}`,
-//     pictureName : `${req.file.originalname}`,
-//   };
-//
-//   Dog.findByIdAndUpdate(req.user.id, updateDog, (err, profile) => {
-//     if (err) { return res.render('/profile-edit', { profile, errors: profile.errors }); }
-//     return res.redirect(`/profile`);
-//   });
-// });
 
 router.get('/chat', (req, res, next) => {
     res.render('user/chat', {user: req.user});

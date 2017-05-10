@@ -5,12 +5,14 @@ const passport = require('passport');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const router = express.Router();
 
-router.get('/', ensureLoggedIn('/login'), (req, res, next) => {
-    res.render('index');
-});
+const User = require('../models/userModel');
 
-router.get('/home', (req, res, next) => {
-    res.render('home/match');
+router.get('/', ensureLoggedIn('/login'), (req, res, next) => {
+    User.find({}).populate('dog').exec((error, users) => {
+        if (error) { return next(error); }
+        console.log(users);
+        res.render('index', { users: users });
+    });
 });
 
 module.exports = router;

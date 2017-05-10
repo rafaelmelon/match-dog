@@ -10,6 +10,4 @@ var dogSchema = new Schema({
 	'description' : String
 });
 
-dogSchema.setupTimestamp(true);
-
 module.exports = mongoose.model('Dog', dogSchema);
