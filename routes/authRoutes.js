@@ -6,7 +6,7 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 const router  = express.Router();
 
 const multer  = require('multer');
-const upload = multer({ dest: './public/uploads/' });
+const upload = multer({ dest: './public/uploads/images' });
 
 // LOGIN
 router.get('/login', ensureLoggedOut(), (req, res) => {

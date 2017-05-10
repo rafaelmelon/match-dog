@@ -5,7 +5,7 @@ const passport = require('passport');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 const multer  = require('multer');
-const upload = multer({ dest: './public/uploads/dogs' });
+const upload = multer({ dest: './public/uploads/images' });
 
 // Require Custom Middleware
 const dogChecker = require('../middleware/dogChecker');
@@ -27,7 +27,7 @@ router.post('/dog', ensureLoggedIn('login'), upload.single('picture'),  (req, re
         name,
         breed,
         age,
-        picture : `/uploads/dogs/${req.file.filename}`,
+        picture : `/uploads/images/${req.file.filename}`,
         pictureName : `${req.file.originalname}`,
         description
     });
