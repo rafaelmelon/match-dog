@@ -8,20 +8,39 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="fullname">User name:</label>
-              <input type="text" class="form-control" name="fullname" placeholder="User name">
+              <input type="text" class="form-control" name="fullname" placeholder="User name" value="<%= user.fullname %>">
             </div>
             <div class="form-group">
               <label for="age">Age:</label>
-              <input type="number" class="form-control" name="age" placeholder="Age">
+              <input type="number" class="form-control" name="age" placeholder="Age" value="<%= user.age %>">
             </div>
             <div class="form-group">
               <label for="age">Description:</label>
-              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
+              <textarea class="form-control" rows="3" name="description" placeholder="Description"><%= user.description %></textarea>
             </div>
           </div>
           <div class="col-md-6">
             <div class="avatar">
-              <img src="<%= user.profilePic %>" alt="" id="image">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <img src="<%= user.profilePic %>" alt="" id="image" width="300">
             </div>
             <div class="avatar-input form-group">
               <input type="file" name="profilePic" id="profilePic">
@@ -37,24 +56,24 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="name">Name:</label>
-              <input type="text" class="form-control" name="name" placeholder="Name">
+              <input type="text" class="form-control" name="name" placeholder="Name" value="<%= user.dog.name %>">
             </div>
             <div class="form-group">
               <label for="breed">Breed:</label>
-              <input type="text" class="form-control" name="breed" placeholder="Breed">
+              <input type="text" class="form-control" name="breed" placeholder="Breed" value="<%= user.dog.breed %>">
             </div>
             <div class="form-group">
               <label for="age">Age:</label>
-              <input type="number" class="form-control" name="age" placeholder="Age">
+              <input type="number" class="form-control" name="age" placeholder="Age" value="<%= user.dog.age %>">
             </div>
             <div class="form-group">
               <label for="age">Description:</label>
-              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
+              <textarea class="form-control" rows="3" name="description" placeholder="Description"><%= user.dog.description %></textarea>
             </div>
           </div>
           <div class="col-md-6">
             <div class="avatar">
-              <img src="" alt="" id="image">
+              <img src="<%= user.dog.picture %>" alt="" id="image" width="300">
             </div>
             <div class="avatar-input form-group">
               <input type="file" name="picture" id="picture">
