@@ -1,71 +1,74 @@
 <% include ../layouts/template/header.ejs %>
 <div class="container">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="b-form">
-        <h2>Rellena los campos de tu perfil</h2>
-        <form action="/edit-user" method="post" enctype="multipart/form-data">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="fullname">User name:</label>
-              <input type="text" class="form-control" name="fullname" placeholder="User name">
+    <div class="row">
+        <form action="/profile-edit" method="post" enctype="multipart/form-data">
+        <div class="col-md-6">
+            <div class="b-form">
+                <h2>Rellena los campos de tu perfil</h2>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="fullname">User name:</label>
+                            <input type="text" class="form-control" name="fullname" placeholder="User name" value="<%= user.fullname %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age:</label>
+                            <input type="number" class="form-control" name="age" placeholder="Age" value="<%= user.age %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" rows="3" name="description" placeholder="Description"><%= user.description %></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="avatar">
+                            <img src="<%= user.profilePic %>" alt="" id="userImage" width="300">
+                        </div>
+                        <div class="avatar-input form-group">
+                            <input type="file" name="picture" id="userPicture">
+                        </div>
+                    </div>
             </div>
-            <div class="form-group">
-              <label for="age">Age:</label>
-              <input type="number" class="form-control" name="age" placeholder="Age">
+        </div>
+        <div class="col-md-6">
+            <div class="b-form">
+                <h2>Rellena los campos de tu perro</h2>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" name="name" placeholder="Name" value="<%= user.dog.name %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="breed">Breed:</label>
+                            <input type="text" class="form-control" name="breed" placeholder="Breed" value="<%= user.dog.breed %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="dog-age">Age:</label>
+                            <input type="number" class="form-control" name="dogAge" placeholder="Age" value="<%= user.dog.age %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="dog-description">Description:</label>
+                            <textarea class="form-control" rows="3" name="dogDescription" placeholder="Description"><%= user.dog.description %></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="avatar">
+                            <img src="<%= user.dog.picture %>" alt="" id="dogImage" width="300">
+                        </div>
+                        <div class="avatar-input form-group">
+                            <input type="file" name="picture" id="dogPicture">
+                        </div>
+                    </div>
+                    <input type="hidden" name="dogId" value="<%= user.dog._id %>"/>
             </div>
-            <div class="form-group">
-              <label for="description">Description:</label>
-              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
-            </div>
+        </div>
+        <div class="col-md-12 text-center">
             <button type="submit" class="btn btn-default">Guardar</button>
-          </div>
-          <div class="col-md-6">
-            <div class="avatar">
-              <img src="<%= user.profilePic %>" alt="" id="image">
-            </div>
-            <div class="avatar-input form-group">
-              <input type="file" name="profilePic" id="profilePic">
-            </div>
-          </div>
+        </div>
         </form>
-      </div>
     </div>
-    <div class="col-md-6">
-      <div class="b-form">
-        <h2>Rellena los campos de tu perro</h2>
-        <form action="/edit-dog" method="POST">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="text" class="form-control" name="name" placeholder="Name">
-            </div>
-            <div class="form-group">
-              <label for="breed">Breed:</label>
-              <input type="text" class="form-control" name="breed" placeholder="Breed">
-            </div>
-            <div class="form-group">
-              <label for="age">Age:</label>
-              <input type="number" class="form-control" name="age" placeholder="Age">
-            </div>
-            <div class="form-group">
-              <label for="description">Description:</label>
-              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
-            </div>
-            <button type="submit" class="btn btn-default">Guardar</button>
-          </div>
-          <div class="col-md-6">
-            <div class="avatar">
-              <img src="" alt="" id="image">
-            </div>
-            <div class="avatar-input form-group">
-              <input type="file" name="picture" id="picture">
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  </div>
 </div>
-<script>formShowImage("profilePic","image");</script>
+</div>
+<script>
+    formShowImage("userPicture", "userImage");
+    formShowImage("dogPicture", "dogImage");
+</script>
