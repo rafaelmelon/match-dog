@@ -4,9 +4,7 @@
   CUSTOM TEMPLATE
 */
 
-$font-text: 'Roboto Slab', serif;
-$font-enfasis: 'Teko', sans-serif;
-$font-console: 'Inconsolata', monospace;
+$font-text: 'Open Sans', sans-serif;
 
 $shadow-1: inset -5px -10px 40px rgba(0,0,0,0.6);
 $shadow-2: inset -5px -5px 80px rgba(0,0,0,0.5);
@@ -17,6 +15,6 @@ html,body{
 
 .wrapper {
   .h1 {
-    font-family: $font-enfasis;
+    font-family: $font-text;
   }
 }

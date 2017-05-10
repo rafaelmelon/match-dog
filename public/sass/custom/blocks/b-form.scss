@@ -2,10 +2,10 @@
 
 .b-form {
   .avatar {
-    background-color: grey;
+    background-color: $grey-2;
     height: 250px;
     width: 250px;
-    margin: 0 auto;
+    margin: 0 auto 15px auto;
     overflow: hidden;
     position: relative;
     img {
@@ -17,11 +17,12 @@
   }
   .avatar-input {
     width: 250px;
-    margin: 0 auto;
+    margin: 0 auto 15px auto;
   }
-  .panel-form {
-    background-color: $grey-2;
-    border-radius: 3px;
-    padding: 15px 20px;
+  .panel-info {
+    border-color: $grey-2;
+  }
+  .input-group {
+      margin-bottom: 15px;
   }
 }
