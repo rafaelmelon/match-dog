@@ -26,6 +26,7 @@ const app = express();
 require('./config/passportConfig')(app);
 app.use((req, res, next) => {
     res.locals.user = req.user;
+    res.locals.url = req.url;
     next();
 });
 

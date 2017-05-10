@@ -15,8 +15,14 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><a class="btn-notification" href="/chat">Chat</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/profile-edit">Edit profile</a></li>
+
+
+        <% if(url == '/profile') { %>
+          <li><a href="/profile-edit">Edit profile</a></li>
+        <% } else { %>
+          <li><a href="/profile">Profile</a></li>
+        <% } %>
+
         <li><a href="/logout">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
