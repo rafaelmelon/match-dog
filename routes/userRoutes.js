@@ -5,9 +5,6 @@ const passport = require('passport');
 const {ensureLoggedIn, ensureLoggedOut} = require('connect-ensure-login');
 const router = express.Router();
 
-const User = require('../models/userModel');
-const Dog = require('../models/dogModel');
-
 const multer  = require('multer');
 const uploadImgUser = multer({ dest: './public/uploads/' });
 const uploadImgDog = multer({ dest: './public/uploads/dogs' });
