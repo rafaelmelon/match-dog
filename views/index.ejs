@@ -8,12 +8,12 @@
 
         <% users.forEach( function( user ) { %>
 
-          <li class="pic-profile sr-only">
+          <li class="pic-profile sr-only" data-id="<%= user._id %>" data-date="<%= user.createdAt %>">
             <div class="img-dog">
               <div class="img-user">
                 <img src="<%= user.profilePic %>" alt="">
               </div>
-              <img src="<%= user.profilePic %>" alt="">
+              <img src="<%= user.dog.picture %>" alt="">
             </div>
             <small><%= user.dog.name; %></small>
             <small><%= user.age %></small>
@@ -23,8 +23,8 @@
 
       </ul>
       <div class="buttons">
-        <button class="btn-no" type="button" name="button"><i class="glyphicon glyphicon-remove"></i></button>
-        <button class="btn-yes" type="button" name="button"><i class="glyphicon glyphicon-ok"></i></button>
+        <button class="btn-no" type="button" name="button" id="btn-no"><i class="glyphicon glyphicon-remove"></i></button>
+        <button class="btn-yes" type="button" name="button" id="btn-yes"><i class="glyphicon glyphicon-ok"></i></button>
       </div>
     </div>
   </div>

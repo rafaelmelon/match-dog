@@ -3,7 +3,7 @@ const Schema   = mongoose.Schema;
 
 const matchSchema = new Schema({
 	'users' : [{type: Schema.Types.ObjectId, ref: 'User'}],
-    'matched' : {type: boolean, default: false}
+    'matched' : {type: Boolean, default: false}
 });
 
 matchSchema.setupTimestamp(true);
