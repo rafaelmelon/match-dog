@@ -7,4 +7,6 @@ var messageSchema = new Schema({
 	'match': {type: Schema.Types.ObjectId, ref: 'Match'}
 });
 
+messageSchema.setupTimestamp(true);
+
 module.exports = mongoose.model('Message', messageSchema);
