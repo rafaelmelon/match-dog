@@ -1,37 +1,33 @@
 <% include ../layouts/template/header-auth.ejs %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="b-form">
-        <h2>Rellena los campos de tu perro</h2>
+<div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+  <div class="b-form">
+    <h2 class="h3 text-center">Rellena los campos de tu perro</h2>
+    <div class="panel panel-info">
+      <div class="panel-body" >
         <form action="/dog" method="post" enctype="multipart/form-data">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label for="name">Name:</label>
-              <input type="text" class="form-control" name="name" placeholder="Name">
-            </div>
-            <div class="form-group">
-              <label for="breed">Breed:</label>
-              <input type="text" class="form-control" name="breed" placeholder="Breed">
-            </div>
-            <div class="form-group">
-              <label for="age">Age:</label>
-              <input type="number" class="form-control" name="age" placeholder="Age">
-            </div>
-            <div class="form-group">
-              <label for="age">Description:</label>
-              <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
-            </div>
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" name="name" placeholder="Name">
           </div>
-          <div class="col-md-6">
-            <div class="avatar">
-              <img src="" alt="" id="image">
-            </div>
-            <div class="avatar-input form-group">
-              <input type="file" name="picture" id="picture">
-            </div>
+          <div class="form-group">
+            <label for="breed">Breed:</label>
+            <input type="text" class="form-control" name="breed" placeholder="Breed">
           </div>
-          <div class="col-md-12">
+          <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" class="form-control" name="age" placeholder="Age">
+          </div>
+          <div class="form-group">
+            <label for="age">Description:</label>
+            <textarea class="form-control" rows="3" name="description" placeholder="Description"></textarea>
+          </div>
+          <div class="avatar">
+            <img src="" alt="" id="image">
+          </div>
+          <div class="avatar-input form-group">
+            <input type="file" name="picture" id="picture">
+          </div>
+          <div class="form-group">
             <button type="submit" class="btn btn-default">Siguiente</button>
           </div>
         </form>
