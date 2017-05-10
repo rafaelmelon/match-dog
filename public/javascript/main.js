@@ -1,3 +1,4 @@
+// FORM SHOW IMAGE
 function formShowImage(uploadTagId, imgTagId) {
     document.getElementById(uploadTagId).onchange = function () {
         var reader = new FileReader();
@@ -12,3 +13,11 @@ function formShowImage(uploadTagId, imgTagId) {
     };
 }
 
+// FORM LAST ITEM
+function showLastItem(){
+  $('.list-group .pic-profile:last-child').removeClass("sr-only");
+}
+
+$( document ).ready(function() {
+  showLastItem();
+});

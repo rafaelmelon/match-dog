@@ -4,17 +4,23 @@
     <h2>Match pets</h2>
 
     <div class="b-card">
-      <ul class="list-unstyled">
-        <li class="pic-profile">
-          <div class="img-dog">
-            <div class="img-user">
-              <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+      <ul class="list-group list-unstyled">
+
+        <% users.forEach( function( user ) { %>
+
+          <li class="pic-profile sr-only">
+            <div class="img-dog">
+              <div class="img-user">
+                <img src="<%= user.profilePic %>" alt="">
+              </div>
+              <img src="<%= user.profilePic %>" alt="">
             </div>
-            <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
-          </div>
-          <small>Nombre del perro</small>
-          <small>Raza</small>
-        </li>
+            <small><%= user.dog.name; %></small>
+            <small><%= user.age %></small>
+          </li>
+
+        <% }) %>
+
       </ul>
       <div class="buttons">
         <button class="btn-no" type="button" name="button"><i class="glyphicon glyphicon-remove"></i></button>
