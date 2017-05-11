@@ -63,7 +63,8 @@ module.exports = app => {
                             profilePic : `/uploads/images/${req.file.filename}`,
                             profilePicName : `${req.file.originalname}`,
                             description,
-                            dog: null
+                            dog: null,
+                            lastViewed: new Date('01/01/1901').toISOString()
                         });
                         console.log(newUser);
                         newUser.save((err) => {

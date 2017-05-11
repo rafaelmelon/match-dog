@@ -10,6 +10,8 @@ const upload = multer({ dest: './public/uploads/images/' });
 
 const User = require('../models/userModel');
 const Dog = require('../models/dogModel');
+const Match = require('../models/matchModel');
+const Message = require('../models/messageModel');
 
 router.get('/profile', ensureLoggedIn('/login'), (req, res, next) => {
     User.findById(req.user._id).populate('dog').exec((error, user)=>{
@@ -64,6 +66,11 @@ router.post('/profile-edit', upload.array('picture', 2), ensureLoggedIn('/login'
 });
 
 router.get('/chat', (req, res, next) => {
+    Match.find({ $or: [{ user1: req.user._id }, { user2: req.user._id }], matched: true }).exec((error, matches) => {
+        if (error) { return next(error); }
+
+        console.log(matches);
+    });
     res.render('user/chat', {user: req.user});
 });
 

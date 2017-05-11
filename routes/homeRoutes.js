@@ -12,7 +12,9 @@ router.get('/', ensureLoggedIn('/login'), (req, res, next) => {
     Match.find({user2: req.user._id}).populate({ path:'user1', populate: { path: 'dog' }}).sort({createdAt: 1}).exec((error, matches) => {
         if (error) { return next(error); }
 
-        User.find({ createdAt: { $gt: new Date(req.user.lastViewed) }, _id: {$ne: req.user._id} }).populate('dog').exec((error, users) => {
+        console.log(req.user.lastViewed);
+
+        User.find({ createdAt: { $gt: req.user.lastViewed }, _id: {$ne: req.user._id} }).sort({createdAt: -1}).populate('dog').exec((error, users) => {
             if (error) { return next(error); }
 
             res.render('index', {
@@ -58,7 +60,7 @@ router.post('/match', ensureLoggedIn('/login'), (req, res, next) => {
             res.status(200).json({ message: 'OK' });
         });
     } else {
-        Match.find({ user1: req.body.id, user2: req.user._id }).exec((error, match) => {
+        Match.findOne({ user1: req.body.id, user2: req.user._id }).exec((error, match) => {
             if (error) { return next(error); }
 
             match.matched = true;

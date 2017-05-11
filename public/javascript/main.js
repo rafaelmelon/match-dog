@@ -28,18 +28,22 @@ function setCardsButtonsEvents(){
     $('#btn-no').on('click', function(e){
         var li = $('.list-group li:last-child');
         var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
-        doAJAXRequest("post", "/lastviewed", function(message){
+        doAJAXRequest("post", "/lastviewed", function(response){
             li.remove();
-            li.removeClass("sr-only");
+            $('.list-group li:last-child').removeClass("sr-only");
         }, data);
     });
 
     $('#btn-yes').on('click', function(e){
         var li = $('.list-group li:last-child');
         var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
-        doAJAXRequest("post", "/match", function(message){
+        doAJAXRequest("post", "/match", function(response){
             li.remove();
-            li.removeClass("sr-only");
+            $('.list-group li:last-child').removeClass("sr-only");
+
+            if(response.message == "MATCHED")
+                alert('OK');
+
         }, data);
     });
 }
