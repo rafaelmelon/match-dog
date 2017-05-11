@@ -27,7 +27,7 @@ router.get('/profile-edit', (req, res, next) => {
     });
 });
 
-router.post('/profile-edit', upload.array('picture', 2), ensureLoggedIn('/login'), (req, res, next) => {
+router.post('/profile-edit', upload.fields([{ name: 'userPicture', maxCount: 1}, { name:'dogPicture', maxCount: 1 }]), ensureLoggedIn('/login'), (req, res, next) => {
    User.findById(req.user._id).exec((error, user) => {
        if (error) { return next(error); }
 
@@ -35,9 +35,11 @@ router.post('/profile-edit', upload.array('picture', 2), ensureLoggedIn('/login'
        user.age = req.body.age;
        user.description = req.body.description;
 
-       if (typeof req.files[0] !== 'undefined') {
-           user.profilePic = `/uploads/images/${req.files[0].filename}`;
-           user.profilePicName = `${req.files[0].originalname}`;
+       console.log(req.files);
+
+       if (typeof req.files['userPicture'] !== 'undefined') {
+           user.profilePic = `/uploads/images/${req.files['userPicture'][0].filename}`;
+           user.profilePicName = `${req.files['userPicture'][0].originalname}`;
        }
 
        user.save((error) => {
@@ -51,9 +53,9 @@ router.post('/profile-edit', upload.array('picture', 2), ensureLoggedIn('/login'
                dog.age = req.body.dogAge;
                dog.description = req.body.dogDescription;
 
-               if (typeof req.files[1] !== 'undefined') {
-                   dog.picture = `/uploads/images/${req.files[1].filename}`;
-                   dog.pictureName = `${req.files[1].originalname}`;
+               if (typeof req.files['dogPicture'] !== 'undefined') {
+                   dog.picture = `/uploads/images/${req.files['dogPicture'][0].filename}`;
+                   dog.pictureName = `${req.files['dogPicture'][0].originalname}`;
                }
 
                dog.save((error) => {
