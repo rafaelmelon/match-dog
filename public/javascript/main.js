@@ -34,9 +34,10 @@ function setCardsButtonsEvents(){
     $('#btn-no').on('click', function(e){
         var li = $('.items li:first-child');
         var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
+
         doAJAXRequest("post", "/lastviewed", function(response){
+
             control('remove');
-            li.remove();
             if ($('.items li:first-child').length == 0)
                 location.reload();
 
@@ -46,9 +47,10 @@ function setCardsButtonsEvents(){
     $('#btn-yes').on('click', function(e){
         var li = $('.items li:first-child');
         var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
+
         doAJAXRequest("post", "/match", function(response){
+
             control('save');
-            li.remove();
             if(response.message == "MATCHED")
                 alert('OK');
 
