@@ -32,24 +32,28 @@ function setCardsButtonsEvents(){
   };
 
     $('#btn-no').on('click', function(e){
-        var li = $('.items li:last-child');
+        var li = $('.items li:first-child');
         var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
         doAJAXRequest("post", "/lastviewed", function(response){
-            li.remove();
             control('remove');
+            li.remove();
+            if ($('.items li:first-child').length == 0)
+                location.reload();
+
         }, data);
     });
 
     $('#btn-yes').on('click', function(e){
-        var li = $('.items li:last-child');
+        var li = $('.items li:first-child');
         var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
         doAJAXRequest("post", "/match", function(response){
-            li.remove();
             control('save');
-
+            li.remove();
             if(response.message == "MATCHED")
                 alert('OK');
 
+            if ($('.items li:first-child').length == 0)
+                location.reload();
         }, data);
     });
 }

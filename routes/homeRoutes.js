@@ -9,19 +9,24 @@ const User = require('../models/userModel');
 const Match = require('../models/matchModel');
 
 router.get('/', ensureLoggedIn('/login'), (req, res, next) => {
-    Match.find({user2: req.user._id}).populate({ path:'user1', populate: { path: 'dog' }}).sort({createdAt: 1}).exec((error, matches) => {
+    Match.find({user2: req.user._id, matched: false}).populate({ path:'user1', populate: { path: 'dog' }}).sort({createdAt: -1}).exec((error, matches) => {
         if (error) { return next(error); }
 
-        console.log(req.user.lastViewed);
-
-        User.find({ createdAt: { $gt: req.user.lastViewed }, _id: {$ne: req.user._id} }).sort({createdAt: -1}).populate('dog').exec((error, users) => {
-            if (error) { return next(error); }
-
+        if (matches.length > 0) {
             res.render('index', {
                 matches: matches,
-                users: users
+                users: []
             });
-        });
+        } else {
+            User.find({ createdAt: { $gt: req.user.lastViewed }, _id: {$ne: req.user._id} }).sort({createdAt: -1}).populate('dog').exec((error, users) => {
+                if (error) { return next(error); }
+
+                res.render('index', {
+                    matches: [],
+                    users: users
+                });
+            });
+        }
     });
 });
 
@@ -29,7 +34,18 @@ router.post('/lastviewed', ensureLoggedIn('/login'), (req, res, next) => {
     if (req.body.type == 'match')
         Match.remove({ user1: req.body.id, user2: req.user._id, matched: false }).exec((error) => {
             if (error) { return next(error); }
-            res.status(200).json({ message: 'OK' });
+
+            User.findById(req.user._id).exec((error, user) => {
+                if (error) { return next(error); }
+
+                user.lastViewed = new Date(req.body.date);
+
+                user.save((error) => {
+                    if (error) { return next(error); }
+
+                    res.status(200).json({ message: 'OK' });
+                });
+            });
         });
     else
         User.findById(req.user._id).exec((error, user) => {
@@ -53,11 +69,19 @@ router.post('/match', ensureLoggedIn('/login'), (req, res, next) => {
         });
 
         match.save((error) => {
-            if (error) {
-                return next(error);
-            }
+            if (error) { return next(error); }
 
-            res.status(200).json({ message: 'OK' });
+            User.findById(req.user._id).exec((error, user) => {
+                if (error) { return next(error); }
+
+                user.lastViewed = new Date(req.body.date);
+
+                user.save((error) => {
+                    if (error) { return next(error); }
+
+                    res.status(200).json({ message: 'OK' });
+                });
+            });
         });
     } else {
         Match.findOne({ user1: req.body.id, user2: req.user._id }).exec((error, match) => {

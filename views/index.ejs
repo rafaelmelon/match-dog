@@ -36,7 +36,7 @@
 
           <% matches.reverse().forEach( function(match) { %>
 
-            <li class="item" data-id="<%= match.user1._id %>" data-date="<%= match.user1.createdAt %>" data-type="match">
+            <li class="item" data-id="<%= match.user1._id %>" data-date="<%= new Date(match.user1.createdAt).toISOString() %>" data-type="match">
               <div class="photo">
                 <div class="photo-user">
                     <img src="<%= match.user1.profilePic %>" alt="">

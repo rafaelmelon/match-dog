@@ -35,8 +35,6 @@ router.post('/profile-edit', upload.fields([{ name: 'userPicture', maxCount: 1},
        user.age = req.body.age;
        user.description = req.body.description;
 
-       console.log(req.files);
-
        if (typeof req.files['userPicture'] !== 'undefined') {
            user.profilePic = `/uploads/images/${req.files['userPicture'][0].filename}`;
            user.profilePicName = `${req.files['userPicture'][0].originalname}`;
@@ -68,11 +66,25 @@ router.post('/profile-edit', upload.fields([{ name: 'userPicture', maxCount: 1},
 });
 
 router.get('/chat', (req, res, next) => {
-    Match.find({ $or: [{ user1: req.user._id }, { user2: req.user._id }], matched: true }).exec((error, matches) => {
+
+    let condition = { $match: { user1: req.user._id , matched: true }};
+    let projection = { $project: { _id: 0, user: '$user2'}};
+
+    Match.aggregate(condition, projection).exec((error, matches1) => {
         if (error) { return next(error); }
 
-        console.log(matches);
+        condition = { $match: { user2: req.user._id , matched: true }};
+        projection = { $project: { _id: 0, user: '$user1'}};
+
+        Match.aggregate(condition, projection).exec((error, matches2) => {
+            if (error) { return next(error); }
+
+            User.populate(matches1.concat(matches2), { path: "user" }, (error, users) => {
+                console.log(users);
+            });
+        });
     });
+
     res.render('user/chat', {user: req.user});
 });
 
