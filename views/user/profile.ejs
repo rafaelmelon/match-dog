@@ -3,26 +3,24 @@
   <div class="row">
     <div class="col-md-12 text-center">
       <h2 class="h2">User profile</h2>
-      <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="b-profile user">
+      <div class="col-md-12">
+        <div class="b-profile">
           <div class="pic">
-            <img src="<%= user.profilePic %>" alt="" width="300">
+            <img src="/uploads/images/testuser.png" alt="" width="300">
             <span>Owner</span>
           </div>
           <div class="info">
-            <small><%= user.fullname %>, <%= user.age %>yrs</small>
+            <small><%= user.fullname %>, <%= user.age %> yrs</small>
           </div>
           <div class="description"><%= user.description %></div>
         </div>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-6">
-        <div class="b-profile dog">
+        <div class="b-profile">
           <div class="pic">
-            <img src="<%= user.dog.picture %>" alt="" width="300">
+            <img src="/uploads/images/testdog.jpg" alt="" width="300">
           </div>
           <div class="info">
-            <small><%= user.dog.name %>, <%= user.dog.age %>yrs.</small>
             <small><%= user.dog.breed %></small>
+            <small><%= user.dog.name %>, <%= user.dog.age %> yrs</small>
           </div>
           <div class="description">
               <%= user.dog.description %>
@@ -31,7 +29,7 @@
       </div>
     </div>
     <div class="col-md-12 text-center">
-      <button type="submit" class="btn btn-default">Search</button>
+      <a href="/" class="btn btn-success btn-lg btn-custom-color-2">Find a couple</a>
     </div>
   </div>
 </div>
