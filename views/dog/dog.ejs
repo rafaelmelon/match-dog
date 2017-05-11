@@ -1,7 +1,7 @@
 <% include ../layouts/template/header-auth.ejs %>
 <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
   <div class="b-form">
-    <h2 class="h3 text-center">Rellena los campos de tu perro</h2>
+    <h2 class="h3 text-center">Fill out your dog form</h2>
     <div class="panel panel-info">
       <div class="panel-body" >
         <form action="/dog" method="post" enctype="multipart/form-data">
@@ -27,8 +27,8 @@
           <div class="avatar-input form-group">
             <input type="file" name="picture" id="picture">
           </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-default">Siguiente</button>
+          <div class="col-sm-12 text-center">
+            <button type="submit" class="btn btn-success">Next step</button>
           </div>
         </form>
       </div>

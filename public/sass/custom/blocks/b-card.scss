@@ -1,77 +1,125 @@
 // main: ../../main.scss
 
 .b-card {
-  width: 280px;
   margin: 0 auto;
-  .pic-profile {
-    width: 280px;
-    background-color: $grey-2;
-    box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-    padding: 20px;
-    float: left;
-    margin-bottom: 20px;
-    .img-dog {
-      width: 100%;
-      height: 250px;
-      margin: 0 auto;
-      overflow: hidden;
-      position: relative;
-      img {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
+  position: relative;
+  width: 300px;
+  height: 425px;
+  // CONTROLS
+  .controls {
+    position: absolute;
+    clear: both;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    li { margin: 0 20px;
+      button {
+        cursor: pointer;
+        width: 80px; height: 80px;
+        padding: 0; margin: 0;
+        outline: 0; border: 0;
+        border-radius: 99em;
+
+        box-shadow: inset 0 0 0 1px $white;
+        transition: all 150ms ease;
+        font-size: 16pt;
+        text-align: center;
+        &:hover, &:active {
+          background: rgba($white, 0.6);
+          box-shadow: inset 0 0 0 3px $white;
+        }
       }
-      .img-user {
-        width: 70px;
-        height: 70px;
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
+      &.pass button { color: $white; background: rgba($primary-1, 0.8);}
+      &.like button { color: $white; background: rgba($primary-1-1, 0.8);}
+    }
+  }
+  // ITEMS
+  .items {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 50px;
+    .item {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: calc(100% - 50px); height: calc(100% - 50px);
+      border-radius: 5px;
+      background-color: $white;
+
+      background-position: center;
+      background-repeat: no-repeat;
+      display: none;
+      box-shadow: 0 1px 3px rgba($black, 0.15);
+      transform: translate(-50%, -50%) scale(1);
+      transition: all 1000ms ease;
+      &.active { z-index: 5; }
+      &.next {
+        top: calc(50% + 12px);
+        opacity: 0.6;
         z-index: 2;
+        transform: translate(-50%, -50%) scale(0.95);
+      }
+      &.last {
+        top: calc(50% + 24px);
+        opacity: 0.3;
+        z-index: 1;
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+      &.remove, &.save {
+        opacity: 0;
+        z-index: 999;
+        transition-duration: 500ms;
+      }
+      &.remove { transform: translate(-200%, -50%) rotate(-25deg) scale(0.6); }
+      &.save { transform: translate(100%, -50%) rotate(25deg) scale(0.6); }
+      .photo {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        margin: 5px;
+        border-radius: 3px;
+        background-position: center center;
+        background-size: cover;
         overflow: hidden;
-        border-radius: 50%;
-        border: 2px solid white;
         img {
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 150px;
+          z-index: 1;
+        }
+        .photo-user {
+          width: 70px;
+          height: 70px;
+          position: absolute;
+          bottom: 5px;
+          right: 5px;
+          z-index: 2;
+          overflow: hidden;
+          border-radius: 50%;
+          border: 2px solid white;
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+          }
         }
       }
-    }
-    small {
-      font-size: 15px;
-      padding-top: 20px;
-      float: left;
-      &:last-child {
-        float: right;
-      }
-    }
-  }
-  .buttons {
-    width: 280px;
-    background-color: #e9e9e9;
-    button {
-      height: 100px;
-      width: 100px;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      float: left;
-      i {
-        font-size: 30px;
-      }
-      &.btn-no {
-        background-color: red;
-      }
-      &.btn-yes {
-        background-color: green;
-      }
-      &:last-child {
-        float: right;
+      .caption {
+        cursor: default;
+        position: absolute;
+        left: 0; right: 0; bottom: 0;
+        margin: 5px;
+        background: rgba($white, 0.9);
+        z-index: 1;
+        .info { padding: 10px;
+          .name { font-weight: 700; text-transform: capitalize; }
+          .age { font-size: 75%; font-weight: 600; text-transform: uppercase; }
+        }
       }
     }
   }

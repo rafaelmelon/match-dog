@@ -1,49 +1,60 @@
 <% include layouts/template/header.ejs %>
 <div class="row">
     <div class="col-md-12 text-center">
-        <h2>Match pets</h2>
+      <h2 class="h2">Match pets</h2>
 
-        <div class="b-card">
-            <ul class="list-group list-unstyled">
+      <div class="b-card">
 
-                <% users.forEach(function(user) { %>
+        <ul class="controls list-unstyled">
+          <li class="pass">
+            <button id="btn-no"class='glyphicon glyphicon-remove'></button>
+          </li>
+          <li class="like">
+            <button id="btn-yes"class='glyphicon glyphicon-ok'></button>
+          </li>
+        </ul>
+        <ul class="items list-unstyled">
 
-                <li class="pic-profile sr-only" data-id="<%= user._id %>" data-date="<%= new Date(user.createdAt).toISOString() %>" data-type="user">
-                    <div class="img-dog">
-                        <div class="img-user">
-                            <img src="<%= user.profilePic %>" alt="">
-                        </div>
-                        <img src="<%= user.dog.picture %>" alt="">
-                    </div>
-                    <small><%= user.dog.name; %></small>
-                    <small><%= user.age %></small>
-                </li>
+          <% users.reverse().forEach(function(user) { %>
 
-                <% }) %>
+            <li class="item" data-id="<%= user._id %>" data-date="<%= new Date(user.createdAt).toISOString() %>" data-type="user">
+              <div class="photo">
+                <div class="photo-user">
+                    <img src="<%= user.profilePic %>" alt="">
+                </div>
+                <img src="<%= user.dog.picture %>" alt="">
+              </div>
+              <div class="caption">
+                <div class="info">
+                  <div class="name"><%= user.dog.name %></div>
+                  <div class="age"><%= user.dog.age %></div>
+                </div>
+              </div>
+            </li>
 
-                <% matches.forEach( function(match) { %>
+          <% }) %>
 
-                <li class="pic-profile sr-only" data-id="<%= match.user1._id %>" data-date="<%= match.user1.createdAt %>" data-type="match">
-                    <div class="img-dog">
-                        <div class="img-user">
-                            <img src="<%= match.user1.profilePic %>" alt="">
-                        </div>
-                        <img src="<%= match.user1.dog.picture %>" alt="">
-                    </div>
-                    <small><%= match.user1.dog.name; %></small>
-                    <small><%= match.user1.dog.age %></small>
-                </li>
+          <% matches.reverse().forEach( function(match) { %>
 
-                <% }) %>
+            <li class="item" data-id="<%= match.user1._id %>" data-date="<%= match.user1.createdAt %>" data-type="match">
+              <div class="photo">
+                <div class="photo-user">
+                    <img src="<%= match.user1.profilePic %>" alt="">
+                </div>
+                <img src="<%= match.user1.dog.picture %>" alt="">
+              </div>
+              <div class="caption">
+                <div class="info">
+                  <div class="name"><%= match.user1.dog.name %></div>
+                  <div class="age"><%= match.user1.dog.age %></div>
+                </div>
+              </div>
+            </li>
 
-            </ul>
-            <div class="buttons">
-                <button class="btn-no" type="button" name="button" id="btn-no"><i
-                            class="glyphicon glyphicon-remove"></i></button>
-                <button class="btn-yes" type="button" name="button" id="btn-yes"><i class="glyphicon glyphicon-ok"></i>
-                </button>
-            </div>
-        </div>
+          <% }) %>
+
+        </ul>
+      </div>
     </div>
 </div>
 <!-- Button modal fullscreen -->

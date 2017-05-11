@@ -5,6 +5,7 @@
 */
 
 $font-text: 'Open Sans', sans-serif;
+$font-enfasis: 'Baloo', cursive;
 
 $shadow-1: inset -5px -10px 40px rgba(0,0,0,0.6);
 $shadow-2: inset -5px -5px 80px rgba(0,0,0,0.5);
@@ -15,6 +16,12 @@ html,body{
 
 .wrapper {
   .h1 {
-    font-family: $font-text;
+    font-family: $font-enfasis;
+    line-height: 0;
+    color: $primary-1;
+  }
+  .h2 {
+    font-family: $font-enfasis;
+    margin-bottom: 20px;
   }
 }

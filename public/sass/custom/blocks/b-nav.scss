@@ -3,7 +3,16 @@
 .b-nav {
   border-radius: 0;
   border: none;
+  .navbar-brand {
+    font-family: $font-enfasis;
+    color: $primary-1;
+    background-image: url("../img/dog.png");
+    background-size: 65px;
+    background-repeat: no-repeat;
+    padding-left: 60px;
+    background-position: 0 5px;
+  }
   .btn-notification {
-    background-color: red;
+    background-color: $primary-1;
   }
 }

@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-  showLastItem();
   setCardsButtonsEvents();
 });
 
@@ -18,28 +17,35 @@ function formShowImage(uploadTagId, imgTagId) {
     };
 }
 
-// FORM LAST ITEM
-function showLastItem(){
-    $('.list-group .pic-profile:last-child').removeClass("sr-only");
-}
-
 // ADD EVENTS TO THE YES - NO BUTTONS
 function setCardsButtonsEvents(){
+
+  $('.item:lt(3)').show();
+  $('.item:eq(0)').addClass('active');
+  $('.item:eq(1)').addClass('next');
+  $('.item:eq(2)').addClass('last');
+
+  var control = function (e) {
+    $('.active').switchClass('active', e);
+    $('.next').switchClass('next', 'active');
+    $('.last').switchClass('last', 'next').next().show().addClass('last');
+  };
+
     $('#btn-no').on('click', function(e){
-        var li = $('.list-group li:last-child');
+        var li = $('.items li:last-child');
         var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
         doAJAXRequest("post", "/lastviewed", function(response){
             li.remove();
-            $('.list-group li:last-child').removeClass("sr-only");
+            control('remove');
         }, data);
     });
 
     $('#btn-yes').on('click', function(e){
-        var li = $('.list-group li:last-child');
+        var li = $('.items li:last-child');
         var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
         doAJAXRequest("post", "/match", function(response){
             li.remove();
-            $('.list-group li:last-child').removeClass("sr-only");
+            control('save');
 
             if(response.message == "MATCHED")
                 alert('OK');
@@ -59,6 +65,3 @@ function doAJAXRequest(method, url, successCallback, data) {
         data: data
     });
 }
-
-
-
