@@ -31,6 +31,9 @@ function setCardsButtonsEvents(){
         doAJAXRequest("post", "/lastviewed", function(response){
             li.remove();
             $('.list-group li:last-child').removeClass("sr-only");
+
+            if ($('.list-group li:last-child').length == 0)
+                location.reload();
         }, data);
     });
 
@@ -44,6 +47,8 @@ function setCardsButtonsEvents(){
             if(response.message == "MATCHED")
                 alert('OK');
 
+            if ($('.list-group li:last-child').length == 0)
+                location.reload();
         }, data);
     });
 }
