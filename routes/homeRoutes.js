@@ -9,38 +9,67 @@ const User = require('../models/userModel');
 const Match = require('../models/matchModel');
 
 router.get('/', ensureLoggedIn('/login'), (req, res, next) => {
-    User.find({ _id: {$ne: req.user._id} }).populate('dog').exec((error, users) => {
-        if (error) { return next(error); }
-        console.log(users);
-        res.render('index', { users: users });
-    });
-});
-
-router.post('/lastviewed', ensureLoggedIn('/login'), (req, res, next) => {
-    User.findById(req.user._id).exec((error, user) => {
+    Match.find({user2: req.user._id}).populate({ path:'user1', populate: { path: 'dog' }}).sort({createdAt: 1}).exec((error, matches) => {
         if (error) { return next(error); }
 
-        user.lastViewed = req.body.date;
+        User.find({ createdAt: { $gt: new Date(req.user.lastViewed) }, _id: {$ne: req.user._id} }).populate('dog').exec((error, users) => {
+            if (error) { return next(error); }
 
-        user.save((error) => {
-           if (error) { return next(error); }
-
-           res.status(200).json({ message: 'OK' });
+            res.render('index', {
+                matches: matches,
+                users: users
+            });
         });
     });
 });
 
+router.post('/lastviewed', ensureLoggedIn('/login'), (req, res, next) => {
+    if (req.body.type == 'match')
+        Match.remove({ user1: req.body.id, user2: req.user._id, matched: false }).exec((error) => {
+            if (error) { return next(error); }
+            res.status(200).json({ message: 'OK' });
+        });
+    else
+        User.findById(req.user._id).exec((error, user) => {
+            if (error) { return next(error); }
+
+            user.lastViewed = new Date(req.body.date);
+
+            user.save((error) => {
+               if (error) { return next(error); }
+
+               res.status(200).json({ message: 'OK' });
+            });
+        });
+});
+
 router.post('/match', ensureLoggedIn('/login'), (req, res, next) => {
-    const match = new Match({
-        users: [req.user._id, req.body.id]
-    });
+    if (req.body.type == "user") {
+        const match = new Match({
+            user1: req.user._id,
+            user2: req.body.id
+        });
 
-    match.save((error) => {
-        if (error) { return next(error); }
+        match.save((error) => {
+            if (error) {
+                return next(error);
+            }
 
-        res.status(200).json({ message: 'OK' });
-    });
+            res.status(200).json({ message: 'OK' });
+        });
+    } else {
+        Match.find({ user1: req.body.id, user2: req.user._id }).exec((error, match) => {
+            if (error) { return next(error); }
 
+            match.matched = true;
+
+            match.save((error) => {
+                if (error) { return next(error); }
+
+                res.status(200).json({ message: 'MATCHED' });
+            });
+        });
+    }
 });
 
 module.exports = router;

@@ -26,18 +26,20 @@ function showLastItem(){
 // ADD EVENTS TO THE YES - NO BUTTONS
 function setCardsButtonsEvents(){
     $('#btn-no').on('click', function(e){
-        var data = { date: $('.list-group li:last-child').attr("data-date") };
+        var li = $('.list-group li:last-child');
+        var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
         doAJAXRequest("post", "/lastviewed", function(message){
-            $('.list-group li:last-child').remove();
-            $('.list-group li:last-child').removeClass("sr-only");
+            li.remove();
+            li.removeClass("sr-only");
         }, data);
     });
 
     $('#btn-yes').on('click', function(e){
-        var data = { id: $('.list-group li:last-child').attr("data-id") };
+        var li = $('.list-group li:last-child');
+        var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
         doAJAXRequest("post", "/match", function(message){
-            $('.list-group li:last-child').remove();
-            $('.list-group li:last-child').removeClass("sr-only");
+            li.remove();
+            li.removeClass("sr-only");
         }, data);
     });
 }

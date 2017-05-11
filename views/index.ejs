@@ -1,67 +1,85 @@
 <% include layouts/template/header.ejs %>
 <div class="row">
-  <div class="col-md-12 text-center">
-    <h2>Match pets</h2>
+    <div class="col-md-12 text-center">
+        <h2>Match pets</h2>
 
-    <div class="b-card">
-      <ul class="list-group list-unstyled">
+        <div class="b-card">
+            <ul class="list-group list-unstyled">
 
-        <% users.forEach( function( user ) { %>
+                <% users.forEach( function(user) { %>
 
-          <li class="pic-profile sr-only" data-id="<%= user._id %>" data-date="<%= user.createdAt %>">
-            <div class="img-dog">
-              <div class="img-user">
-                <img src="<%= user.profilePic %>" alt="">
-              </div>
-              <img src="<%= user.dog.picture %>" alt="">
+                <li class="pic-profile sr-only" data-id="<%= user._id %>" data-date="<%= new Date(user.createdAt).toISOString() %>" data-type="user">
+                    <div class="img-dog">
+                        <div class="img-user">
+                            <img src="<%= user.profilePic %>" alt="">
+                        </div>
+                        <img src="<%= user.dog.picture %>" alt="">
+                    </div>
+                    <small><%= user.dog.name; %></small>
+                    <small><%= user.age %></small>
+                </li>
+
+                <% }) %>
+
+                <% matches.forEach( function(match) { %>
+
+                <li class="pic-profile sr-only" data-id="<%= match.user1._id %>" data-date="<%= match.user1.createdAt %>" data-type="match">
+                    <div class="img-dog">
+                        <div class="img-user">
+                            <img src="<%= match.user1.profilePic %>" alt="">
+                        </div>
+                        <img src="<%= match.user1.dog.picture %>" alt="">
+                    </div>
+                    <small><%= match.user1.dog.name; %></small>
+                    <small><%= match.user1.dog.age %></small>
+                </li>
+
+                <% }) %>
+
+            </ul>
+            <div class="buttons">
+                <button class="btn-no" type="button" name="button" id="btn-no"><i
+                            class="glyphicon glyphicon-remove"></i></button>
+                <button class="btn-yes" type="button" name="button" id="btn-yes"><i class="glyphicon glyphicon-ok"></i>
+                </button>
             </div>
-            <small><%= user.dog.name; %></small>
-            <small><%= user.age %></small>
-          </li>
-
-        <% }) %>
-
-      </ul>
-      <div class="buttons">
-        <button class="btn-no" type="button" name="button" id="btn-no"><i class="glyphicon glyphicon-remove"></i></button>
-        <button class="btn-yes" type="button" name="button" id="btn-yes"><i class="glyphicon glyphicon-ok"></i></button>
-      </div>
+        </div>
     </div>
-  </div>
 </div>
 <!-- Button modal fullscreen -->
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-fullscreen">
-  Launch modal fullscreen
+    Launch modal fullscreen
 </button>
 
 <!-- Modal fullscreen -->
-<div class="m-match modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="myModalLabel">Nueva pareja</h2>
-        <p>Bobby y tu se han gustado</p>
-      </div>
-      <div class="modal-body">
-        <div class="b-card-match">
-          <div class="pic">
-            <div class="img-dog">
-              <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+<div class="m-match modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="myModalLabel">Nueva pareja</h2>
+                <p>Bobby y tu se han gustado</p>
             </div>
-          </div>
-          <div class="pic">
-            <div class="img-dog">
-              <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+            <div class="modal-body">
+                <div class="b-card-match">
+                    <div class="pic">
+                        <div class="img-dog">
+                            <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+                        </div>
+                    </div>
+                    <div class="pic">
+                        <div class="img-dog">
+                            <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn btn-default" type="button" name="button">Enviar un mensaje</button>
+                    </div>
+                    <div class="buttons">
+                        <button class="btn btn-default" type="button" name="button">Sigue jugando</button>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="buttons">
-            <button class="btn btn-default" type="button" name="button">Enviar un mensaje</button>
-          </div>
-          <div class="buttons">
-            <button class="btn btn-default" type="button" name="button">Sigue jugando</button>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
