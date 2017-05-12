@@ -6,7 +6,7 @@
       <div class="col-md-12">
         <div class="b-profile">
           <div class="pic">
-            <img src="/uploads/images/testuser.png" alt="" width="300">
+            <img src="<%= user.profilePic %>" alt="" width="300">
             <span>Owner</span>
           </div>
           <div class="info">
@@ -16,7 +16,7 @@
         </div>
         <div class="b-profile">
           <div class="pic">
-            <img src="/uploads/images/testdog.jpg" alt="" width="300">
+            <img src="<%= user.dog.picture %>" alt="" width="300">
           </div>
           <div class="info">
             <small><%= user.dog.breed %></small>
