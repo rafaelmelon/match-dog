@@ -25,3 +25,20 @@ html,body{
     margin-bottom: 20px;
   }
 }
+
+.btn-custom-color-1 {
+  background-color: $primary-1;
+  border-color: $primary-1;
+  &:hover {
+    background-color: $primary-1;
+    border-color: $primary-1;
+  }
+}
+.btn-custom-color-2 {
+  background-color: $primary-1-1;
+  border-color: $primary-1-1;
+  &:hover {
+    background-color: $primary-1-1;
+    border-color: $primary-1-1;
+  }
+}

@@ -13,18 +13,38 @@
     .modal-content {
       .modal-header {
         color: white;
+        border-bottom: none;
+        padding-bottom: 0;
+        text-align: center;
+        .h2 {
+          margin-bottom: 0;
+        }
       }
       .modal-body {
         .b-card-match {
+          text-align: center;
           .pic {
             width: 280px;
             display: inline-block;
+            margin-bottom: 20px;
+            margin-right: 15px;
+            &:nth-child(2) {
+              margin-left: 15px;
+              margin-right: 0;
+            }
+            @media (max-width: 768px) {
+              margin-right: 0;
+              &:nth-child(2) {
+                margin-left: 0
+              }
+            }
             .img-dog {
-              width: 100%;
+              width: 250px;
               height: 250px;
               margin: 0 auto;
               overflow: hidden;
               position: relative;
+              border-radius: 5px;
               img {
                 position: absolute;
                 top: 50%;
@@ -36,6 +56,7 @@
           }
           .buttons {
             text-align: center;
+            margin-bottom: 20px;
           }
         }
       }

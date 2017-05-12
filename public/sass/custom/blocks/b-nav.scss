@@ -11,8 +11,15 @@
     background-repeat: no-repeat;
     padding-left: 60px;
     background-position: 0 5px;
+    &:hover {
+      color: $primary-1;
+    }
   }
-  .btn-notification {
-    background-color: $primary-1;
+  &.navbar-default .navbar-nav>li>a {
+    &.btn-notification {
+      color: $grey-2;
+      background-color: $primary-1;
+    }
   }
+
 }
