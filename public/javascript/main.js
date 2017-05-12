@@ -32,7 +32,7 @@ function setCardsButtonsEvents(){
   };
 
     $('#btn-no').on('click', function(e){
-        var li = $('.items li:first-child');
+        var li = $('.items .active');
         var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
 
         doAJAXRequest("post", "/lastviewed", function(response){
@@ -45,17 +45,27 @@ function setCardsButtonsEvents(){
     });
 
     $('#btn-yes').on('click', function(e){
-        var li = $('.items li:first-child');
+        var li = $('.items .active');
         var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
 
         doAJAXRequest("post", "/match", function(response){
-            control('save');
 
-            if(response.message == "MATCHED")
+            if(response.message == "MATCHED") {
+                $('#matched-dog-pic').attr('src', $('.active .photo-dog').attr('src'));
+                $('.matched-dog-name').text($('.active .info .name').text());
 
+                $('#modal-fullscreen').modal('show');
+                $('#modal-fullscreen').on('hidden.bs.modal', function(){
+                    control('save');
+                    if ($('.items .next').length == 0)
+                        location.reload();
+                });
+            } else {
+                control('save');
+                if ($('.items .next').length == 0)
+                    location.reload();
+            }
 
-            if ($('.items .next').length == 0)
-                location.reload();
         }, data);
     });
 }

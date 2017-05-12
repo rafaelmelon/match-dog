@@ -4,65 +4,122 @@
     <div class="col-md-12 text-center">
       <h2 class="h2">Match pets</h2>
 
-      <div class="b-card">
+        <% if (matches.length > 0 || users.length > 0)  { %>
 
-        <ul class="controls list-unstyled">
-          <li class="pass">
-            <button id="btn-no"class='glyphicon glyphicon-remove'></button>
-          </li>
-          <li class="like">
-            <button id="btn-yes"class='glyphicon glyphicon-ok'></button>
-          </li>
-        </ul>
-        <ul class="items list-unstyled">
+          <div class="b-card">
+            <ul class="controls list-unstyled">
+              <li class="pass">
+                <button id="btn-no"class='glyphicon glyphicon-remove'></button>
+              </li>
+              <li class="like">
+                <button id="btn-yes"class='glyphicon glyphicon-ok'></button>
+              </li>
+            </ul>
+            <ul class="items list-unstyled">
 
-          <% users.reverse().forEach(function(user) { %>
+              <% users.reverse().forEach(function(user) { %>
 
-            <li class="item" data-id="<%= user._id %>" data-date="<%= new Date(user.createdAt).toISOString() %>" data-type="user">
-              <div class="photo">
-                <div class="photo-user">
-                    <img src="<%= user.profilePic %>" alt="">
-                </div>
-                <img src="<%= user.dog.picture %>" alt="">
-              </div>
-              <div class="caption">
-                <div class="info">
-                  <div class="name"><%= user.dog.name %></div>
-                  <div class="age"><%= user.dog.age %></div>
-                </div>
-              </div>
-            </li>
+                <li class="item" data-id="<%= user._id %>" data-date="<%= new Date(user.createdAt).toISOString() %>" data-type="user">
+                  <div class="photo">
+                    <div class="photo-user">
+                        <img src="<%= user.profilePic %>" alt="">
+                    </div>
+                    <img class="photo-dog" src="<%= user.dog.picture %>" alt="">
+                  </div>
+                  <div class="caption">
+                    <div class="info">
+                      <div class="name"><%= user.dog.name %></div>
+                      <div class="age"><%= user.dog.age %> yrs</div>
+                    </div>
+                  </div>
+                </li>
 
-          <% }) %>
+              <% }) %>
 
-          <% matches.reverse().forEach( function(match) { %>
+              <% matches.reverse().forEach( function(match) { %>
 
-            <li class="item" data-id="<%= match.user1._id %>" data-date="<%= new Date(match.user1.createdAt).toISOString() %>" data-type="match">
-              <div class="photo">
-                <div class="photo-user">
-                    <img src="<%= match.user1.profilePic %>" alt="">
-                </div>
-                <img src="<%= match.user1.dog.picture %>" alt="">
-              </div>
-              <div class="caption">
-                <div class="info">
-                  <div class="name"><%= match.user1.dog.name %></div>
-                  <div class="age"><%= match.user1.dog.age %></div>
-                </div>
-              </div>
-            </li>
+                <li class="item" data-id="<%= match.user1._id %>" data-date="<%= new Date(match.user1.createdAt).toISOString() %>" data-type="match">
+                  <div class="photo">
+                    <div class="photo-user">
+                        <img src="<%= match.user1.profilePic %>" alt="">
+                    </div>
+                    <img class="photo-dog" src="<%= match.user1.dog.picture %>" alt="">
+                  </div>
+                  <div class="caption">
+                    <div class="info">
+                      <div class="name"><%= match.user1.dog.name %></div>
+                      <div class="age"><%= match.user1.dog.age %> yrs</div>
+                    </div>
+                  </div>
+                </li>
 
-          <% }) %>
+              <% }) %>
 
-        </ul>
-      </div>
+            </ul>
+          </div>
+        <% } else { %>
+            <div class="pulser">
+                <style>
+                    .pulser {
+                        margin: 0 auto;
+                        position: relative;
+                        width: 300px;
+                        height: 500px;
+                    }
+
+                    @keyframes pulse {
+                        0%{transform:scale(.1);opacity: 0;}
+                        50%{ opacity: .4;}
+                        100%{transform: scale(1.9); opacity: 0;}
+                    }
+                    .controls div {
+                        background-color: #3748f0;
+                        border-radius: 50%;
+                        position: absolute;
+                        margin: auto auto;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        width: 200px;
+                        height: 200px;
+                    }
+
+                    .controls div:nth-child(1){
+                        animation: pulse 2s infinite;
+                    }
+                    .controls div:nth-child(2){
+                        animation: pulse 2s infinite .3s;
+                    }
+                    .controls div:nth-child(3){
+                        animation: pulse 2s infinite .6s;
+                    }
+
+                    .controls div:nth-child(4){
+                        text-align: center;
+                        font-family: "Baloo", cursive;
+                        color: #FFFFFF;
+                        font-size: 20px;
+                        line-height: 200px;
+                        width: 200px;
+                        height: 200px;
+                    }
+                </style>
+                <ul class="controls">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div>No more pets!</div>
+                </ul>
+            </div>
+        <% } %>
     </div>
 </div>
 </div>
-<!-- Button modal fullscreen -->
+<!-- Button modal fullscreen
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-fullscreen">
     Launch modal fullscreen
-</button>
+</button>  -->
 
 <!-- Modal fullscreen -->
 <div class="m-match modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog"
@@ -71,25 +128,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title h2" id="myModalLabel">New match!</h2>
-                <p>Bobby also likes you</p>
+                <p><span class="matched-dog-name"></span> also likes you!</p>
             </div>
             <div class="modal-body">
                 <div class="b-card-match">
                     <div class="pic">
                         <div class="img-dog">
-                            <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+                            <img id="your-dog" src="<%= user.dog.picture %>" alt="">
                         </div>
                     </div><!--
                     --><div class="pic">
                         <div class="img-dog">
-                            <img src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
+                            <img id="matched-dog-pic" src="http://media.giphy.com/media/UsK5GqD3e0huU/giphy.gif" alt="">
                         </div>
                     </div>
                     <div class="buttons">
-                        <button class="btn btn-success btn-lg btn-custom-color-2" type="button" name="button">Chat with Bobby</button>
+                        <button class="btn btn-success btn-lg btn-custom-color-2" type="button" name="button">Chat with <span class="matched-dog-name"></span>'s Owner</button>
                     </div>
                     <div class="buttons">
-                        <button class="btn btn-info btn-lg btn-custom-color-2" type="button" name="button">Next dog</button>
+                        <button class="btn btn-info btn-lg btn-custom-color-2" type="button" name="button" data-dismiss="modal">Back to Search</button>
                     </div>
                 </div>
             </div>

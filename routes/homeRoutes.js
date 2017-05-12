@@ -13,17 +13,27 @@ router.get('/', ensureLoggedIn('/login'), (req, res, next) => {
         if (error) { return next(error); }
 
         if (matches.length > 0) {
-            res.render('index', {
-                matches: matches,
-                users: []
-            });
-        } else {
-            User.find({ createdAt: { $gt: req.user.lastViewed }, _id: {$ne: req.user._id} }).sort({createdAt: -1}).populate('dog').exec((error, users) => {
+            User.findById(req.user._id).populate('dog').exec((error, user) => {
                 if (error) { return next(error); }
 
                 res.render('index', {
-                    matches: [],
-                    users: users
+                    matches: matches,
+                    users: [],
+                    user: user
+                });
+            });
+        } else {
+            User.find({ createdAt: { $gt: new Date(req.user.lastViewed) }, _id: {$ne: req.user._id} }).sort({createdAt: -1}).populate('dog').exec((error, users) => {
+                if (error) { return next(error); }
+
+                User.findById(req.user._id).populate('dog').exec((error, user) => {
+                    if (error) { return next(error); }
+
+                    res.render('index', {
+                        matches: [],
+                        users: users,
+                        user: user
+                    });
                 });
             });
         }
@@ -89,10 +99,20 @@ router.post('/match', ensureLoggedIn('/login'), (req, res, next) => {
 
             match.matched = true;
 
-            match.save((error) => {
+            User.findById(req.user._id).exec((error, user) => {
                 if (error) { return next(error); }
 
-                res.status(200).json({ message: 'MATCHED' });
+                user.lastViewed = new Date(req.body.date);
+
+                user.save((error) => {
+                    if (error) { return next(error); }
+
+                    match.save((error) => {
+                        if (error) { return next(error); }
+
+                        res.status(200).json({ message: 'MATCHED' });
+                    });
+                });
             });
         });
     }
