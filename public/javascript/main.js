@@ -49,7 +49,6 @@ function setCardsButtonsEvents(){
         var data = { id: li.attr("data-id"), date: li.attr("data-date"), type: li.attr("data-type") };
 
         doAJAXRequest("post", "/match", function(response){
-
             control('save');
             if(response.message == "MATCHED")
 
