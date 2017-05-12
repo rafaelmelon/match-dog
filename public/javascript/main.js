@@ -38,7 +38,7 @@ function setCardsButtonsEvents(){
         doAJAXRequest("post", "/lastviewed", function(response){
 
             control('remove');
-            if ($('.items li:first-child').length == 0)
+            if ($('.items .next').length == 0)
                 location.reload();
 
         }, data);
@@ -52,9 +52,9 @@ function setCardsButtonsEvents(){
 
             control('save');
             if(response.message == "MATCHED")
-                alert('OK');
 
-            if ($('.items li:first-child').length == 0)
+
+            if ($('.items .next').length == 0)
                 location.reload();
         }, data);
     });
