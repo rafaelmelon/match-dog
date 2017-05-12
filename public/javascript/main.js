@@ -50,6 +50,7 @@ function setCardsButtonsEvents(){
 
         doAJAXRequest("post", "/match", function(response){
             control('save');
+
             if(response.message == "MATCHED")
 
 
